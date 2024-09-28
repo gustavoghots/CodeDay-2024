@@ -13,7 +13,7 @@
 </head>
 <body id="body-form">
     <header class="flex-row-space">
-        <img src="IFSUL.png" width="300">
+        <img src="../imagens/IFSUL.png" width="300">
         <h2>Sistema para Gestão de Conselho</h2>
     </header>
     <main class="flex-row" id="main-form">
@@ -149,7 +149,7 @@
         </form>
     </main>
     <footer class="flex-row-space">
-        <img src="logofooter.svg" width="80">
+        <img src="../imagens/logofooter.svg" width="80">
         <p>Site experimental criado para o CodeDay 2024</p>
     </footer>    
 </body>
