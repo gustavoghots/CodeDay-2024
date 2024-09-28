@@ -30,5 +30,9 @@
             </div>
         </form>
     </main>
+        <footer class="flex-row-space">
+        <img src="../imagens/logofooter.svg" width="80">
+        <p>Site experimental criado para o CodeDay 2024</p>
+    </footer>
 </body>
 </html>
