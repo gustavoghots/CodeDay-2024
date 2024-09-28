@@ -17,13 +17,13 @@ body{
 
 header{
     padding: 5px;
-    background-color: #eeeeee;
+    background-color: #186d12;
 }
 
 header > h2{
     font-family: inter;
-    font-size: 18px;
-    color: green;
+    font-size: 14px;
+    color: rgb(240, 240, 240);
     padding: 4px;
     border-radius: 5px;
 }
@@ -34,26 +34,37 @@ header > h2{
     z-index: 2;
 }
 
+#texto-lateral-titulo{
+    font-family: inter;
+    width: 400px;
+    text-align: center;
+    font-size: 50px;
+    color: rgb(0, 129, 39);
+}
+
 #texto-lateral{
     font-family: inter;
-    width: 300px;
+    width: 400px;
+    text-align: center;
     font-size: 30px;
     color: rgb(0, 129, 39);
 }
 
 #form{
     flex-direction: column;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(225, 225, 225);
     height: 200px;
     padding: 10px;
     border-radius: 10px;
     gap: 10px;
     font-family: inter;
+    font-weight: bold;
 }
 
 #botao{
     border: none;
     font-weight: bold;
+    font-family: heebo;
     background-color: #196b11;
     color: white;
     padding: 8px;
@@ -83,9 +94,9 @@ main > form > div{
 footer{
     font-family: inter;
     text-align: center;
-    color: rgb(18, 84, 8);
+    color: rgb(238, 238, 238);
     height: 100px;
-    background-color: #c7c7c7;
+    background-color: #186d12;
 }
 
 footer > p{
