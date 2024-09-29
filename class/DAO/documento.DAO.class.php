@@ -1,31 +1,110 @@
 <?php
-    class Documento_DAO {
-        private $conexao;
+@include_once '../documento.class.php';
+class Documento_DAO
+{
+    private $conexao;
 
-        public function __construct(){
-            $this->conexao = 
-            new PDO("mysql:host=localhost; dbname=conselho", 
-            "root", "");
-        }
+    public function __construct()
+    {
+        $this->conexao =
+            new PDO(
+                "mysql:host=localhost; dbname=conselho",
+                "root",
+                ""
+            );
+    }
 
-        public function documentoValidoAluno($idUsuario){
-            $sql = $this->conexao->prepare("SELECT idDocumento 
+    public function documentoValidoAluno($idUsuario)
+    {
+        $sql = $this->conexao->prepare("SELECT idDocumento 
                                                 FROM documento d 
-                                                WHERE d.prazo > now() 
+                                                WHERE d.prazo_A > now() 
                                                 AND d.Aluno_Usuario_idusuario = :idUsuario");
-            $sql->bindValue(":idUsuario", $idUsuario);
-            $sql->execute();
-            return $sql->fetch();
-        }
+        $sql->bindValue(":idUsuario", $idUsuario);
+        $sql->execute();
+        return $sql->fetch();
+    }
 
-        public function Dados($idDocumento){
-            $sql = $this->conexao->prepare("SELECT r.questao, r.valor, r.texto, d.representantes, d.conselheiro, d.participantes, d.Aluno_Usuario_idusuario
+    public function Dados($idDocumento)
+    {
+        $sql = $this->conexao->prepare("SELECT r.questao, r.valor, r.texto, d.representantes, d.conselheiro, d.participantes, d.Aluno_Usuario_idusuario
                                                 FROM documento d INNER JOIN resposta r
 	                                                ON d.idDocumento = r.Documento_idDocumento
                                                 WHERE d.idDocumento = :idDocumento");
-            $sql->bindValue(":idDocumento", $idDocumento);
-            $sql->execute();
-            return $sql->fetchAll();
-        }
+        $sql->bindValue(":idDocumento", $idDocumento);
+        $sql->execute();
+        return $sql->fetchAll();
     }
-?>
+
+    public function AtualizarForm(Documento $objDocumento)
+{
+    // Iniciar a transação
+    $this->conexao->beginTransaction();
+
+    try {
+        // Atualizar o documento
+        $sql = $this->conexao->prepare("UPDATE documento
+                                            SET representantes = :representantes,
+                                                conselheiro = :conselheiro,
+                                                participantes = :participantes
+                                            WHERE idDocumento = :idDocumento;");
+
+        $sql->bindValue(":representantes", json_encode($objDocumento->getRepresentantes()));
+        $sql->bindValue(":conselheiro", $objDocumento->getConselheiro());
+        $sql->bindValue(":participantes", json_encode($objDocumento->getParticipantes()));
+        $sql->bindValue(":idDocumento", $objDocumento->getId());
+        $sql->execute();
+
+        // Exibe mensagem de atualização do documento
+        echo "Documento atualizado: ID " . $objDocumento->getId() . "<br>";
+
+        // Atualizar as respostas
+        $respostas = $objDocumento->getRespostas();
+
+        if (!empty($respostas)) {
+            $caseValor = '';
+            $caseTexto = '';
+            $questoes = [];
+
+            foreach ($respostas as $resposta) {
+                if (isset($resposta['questao'], $resposta['valor'], $resposta['texto'])) {
+                    $questao = (int)$resposta['questao'];
+                    $valor = $resposta['valor'];
+                    $texto = $resposta['texto'];
+
+                    $caseValor .= "WHEN questao = $questao THEN '$valor' ";
+                    $caseTexto .= "WHEN questao = $questao THEN '$texto' ";
+                    $questoes[] = $questao;
+                }
+            }
+
+            // Montar a query para atualizar respostas
+            $sql = $this->conexao->prepare("UPDATE resposta
+                                                SET valor = CASE 
+                                                    " . $caseValor . "
+                                                    END,
+                                                    texto = CASE 
+                                                    " . $caseTexto . "
+                                                    END
+                                                WHERE questao IN (" . implode(',', array_unique($questoes)) . ") 
+                                                AND Documento_idDocumento = :idDocumento;");
+
+            $sql->bindValue(":idDocumento", $objDocumento->getId());
+            $sql->execute();
+
+            // Exibe mensagem de atualização das respostas
+            echo "Respostas atualizadas para o documento ID " . $objDocumento->getId() . "<br>";
+        }
+
+        // Confirmar a transação
+        $this->conexao->commit();
+        echo "Transação confirmada para o documento ID " . $objDocumento->getId() . "<br>";
+    } catch (Exception $e) {
+        // Reverter em caso de erro
+        $this->conexao->rollBack();
+        echo "Erro na atualização do documento ID " . $objDocumento->getId() . ": " . $e->getMessage() . "<br>";
+        throw $e; // Lançar a exceção para tratamento
+    }
+}
+
+}

@@ -30,6 +30,11 @@
     ?>
     <main class="flex-row" id="main-form">
         <form id="formulario" class="flex-row" action="formulario_ok.php" method="POST">
+            <p>Representantes </p>
+            <input type="text" name="Representantes" class="inputs" maxlength="255" value="<?=@$retorno[0]['representantes'];?>"/>
+            <p>Professor Conselheiro</p>
+            <input type="text" name="Conselheiros" class="inputs" maxlength="60" value="<?=@$retorno[0]['conselheiro'];?>" />
+            <br>
             <h5>Postura da turma no que se refere à pontualidade, assiduidade, interesse, participação e cumprimento dos prazos nas entregas de atividades.</h5>
             <div class="flex-row radios">
                 <div class="flex-row radios-sub">
@@ -53,6 +58,7 @@
             </div>
             <p>Motivo</p>
             <textarea name="motivo1" class="inputs" maxlength="255"><?=@$retorno[0]['texto'];?></textarea>
+            <br>
             <h5>Dificuldades da turma e possíveis causas.</h5>
             <textarea name="motivo2" class="inputs" maxlength="255"><?=@$retorno[1]['texto'];?></textarea>
             <h5>Com relação à metodologia, distribuição de conteúdos e avaliações, como consideram as disciplinas trabalhadas pelos docentes?</h5>
@@ -78,6 +84,7 @@
             </div>
             <p>Motivo</p>
             <textarea name="motivo3" class="inputs" maxlength="255"><?=@$retorno[2]['texto'];?></textarea>
+            <br>
             <h5>A turma procura os horários de atendimento disponibilizados pelos professores, para sanar dúvidas com relação as dificuldades nos conteúdos apresentados?</h5>
             <div class="flex-row radios">
                 <div class="flex-row radios-sub">
@@ -99,6 +106,7 @@
             </div>
             <p>Motivo</p>
             <textarea name="motivo4" class="inputs" maxlength="255"><?=@$retorno[3]['texto'];?></textarea>
+            <br>
             <h5>Como a turma avalia os serviços prestados dentro do IFSUL (recepção, atendimento de setores, limpeza, etc.):</h5>
             <div class="flex-row radios">
                 <div class="flex-row radios-sub">
@@ -122,6 +130,7 @@
             </div>
             <p>Motivo</p>
             <textarea name="motivo5" class="inputs" maxlength="255"><?=@$retorno[4]['texto'];?></textarea>
+            <br>
             <h5>Relação turma/professores e professores/turma:</h5>
             <div class="flex-row radios">
                 <div class="flex-row radios-sub">
@@ -145,6 +154,7 @@
             </div>
             <p>Motivo</p>
             <textarea name="motivo6" class="inputs" maxlength="255"><?=@$retorno[5]['texto'];?></textarea>
+            <br>
             <h5>Relacionamento entre os colegas da turma:</h5>
             <div class="flex-row radios">
                 <div class="flex-row radios-sub">
@@ -168,6 +178,7 @@
             </div>
             <p>Motivo</p>
             <textarea name="motivo7" class="inputs" maxlength="255"><?=@$retorno[6]['texto'];?></textarea>
+            <br>
             <h5>Podemos ponderar que a turma é um território livre de racismo e homofobia? São inclusivos, ecologicamente sustentáveis e respeitam a diversidade?</h5>
             <div class="flex-row radios">
                 <div class="flex-row radios-sub">
@@ -190,11 +201,8 @@
             <textarea name="motivo8" class="inputs" maxlength="255"><?=@$retorno[7]['texto'];?></textarea>
             <p>Nome dos Participantes: </p>
             <textarea name="Participantes" class="inputs" maxlength="255"><?=@$retorno[0]['participantes'];?></textarea>
-            <p>Representantes </p>
-            <textarea name="Representantes" class="inputs" maxlength="255"><!--$retorno[x]['representantes'] --></textarea>
-            <p>Professor Conselheiro</p>
-            <input type="text" name="Conselheiros" class="inputs" maxlength="60" value="<!--$retorno[y]['conselheiro'] -->" />
             <button>Enviar Formulário</button>
+            <input type="hidden" name="idDocumento" value="<?=$_GET['id']?>">
         </form>
     </main>
     <footer class="flex-row-space">
