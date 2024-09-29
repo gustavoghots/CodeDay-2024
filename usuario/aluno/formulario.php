@@ -190,6 +190,10 @@
             <textarea name="motivo8" class="inputs" maxlength="255"><?=@$retorno[7]['texto'];?></textarea>
             <p>Nome dos Participantes: </p>
             <textarea name="Participantes" class="inputs" maxlength="255"><?=@$retorno[0]['participantes'];?></textarea>
+            <p>Representantes </p>
+            <textarea name="Representantes" class="inputs" maxlength="255"><!--$retorno[x]['representantes'] --></textarea>
+            <p>Professor Conselheiro</p>
+            <input type="text" name="Conselheiros" class="inputs" maxlength="60" value="<!--$retorno[y]['conselheiro'] -->" />
             <button>Enviar Formulário</button>
         </form>
     </main>
