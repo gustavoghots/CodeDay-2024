@@ -154,6 +154,22 @@ footer > p {
     font-weight: bold;
 }
 
+#funcoesCoord{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#funcoesCoord > a{
+  text-decoration: none;
+  color: white;
+  background-color: #186d12;
+  padding: 0.5rem;
+  border-radius: 0.3125rem;
+  font-family: inter;
+}
+
 @media (max-width: 768px) {
     #texto-lateral-titulo {
         font-size: 2.5rem;
