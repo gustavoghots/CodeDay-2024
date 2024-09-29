@@ -47,5 +47,5 @@ $objDocumentoDAO = new Documento_DAO();
 $objDocumentoDAO->AtualizarForm($objDocumento);
 
 // Redirecionar ou retornar uma mensagem de sucesso
-//header("Location: sucesso.php");
-//exit();
+header("Location: index.php?atualizado");
+exit();

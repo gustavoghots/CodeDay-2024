@@ -19,7 +19,9 @@ class Documento_DAO
         $sql = $this->conexao->prepare("SELECT idDocumento 
                                                 FROM documento d 
                                                 WHERE d.prazo_A > now() 
-                                                AND d.Aluno_Usuario_idusuario = :idUsuario");
+                                                AND d.Aluno_Usuario_idusuario = :idUsuario
+                                                ORDER BY trimestre
+                                                LIMIT 1");
         $sql->bindValue(":idUsuario", $idUsuario);
         $sql->execute();
         return $sql->fetch();
@@ -49,14 +51,14 @@ class Documento_DAO
                                                 participantes = :participantes
                                             WHERE idDocumento = :idDocumento;");
 
-        $sql->bindValue(":representantes", json_encode($objDocumento->getRepresentantes()));
+        $sql->bindValue(":representantes", $objDocumento->getRepresentantes());
         $sql->bindValue(":conselheiro", $objDocumento->getConselheiro());
-        $sql->bindValue(":participantes", json_encode($objDocumento->getParticipantes()));
+        $sql->bindValue(":participantes", $objDocumento->getParticipantes());
         $sql->bindValue(":idDocumento", $objDocumento->getId());
         $sql->execute();
 
         // Exibe mensagem de atualização do documento
-        echo "Documento atualizado: ID " . $objDocumento->getId() . "<br>";
+        echo "<br>Documento atualizado: ID " . $objDocumento->getId() . "<br>";
 
         // Atualizar as respostas
         $respostas = $objDocumento->getRespostas();

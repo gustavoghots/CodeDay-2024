@@ -31,7 +31,7 @@
     <main class="flex-row" id="main-form">
         <form id="formulario" class="flex-row" action="formulario_ok.php" method="POST">
             <p>Representantes </p>
-            <input type="text" name="Representantes" class="inputs" maxlength="255" value="<?=@$retorno[0]['representantes'];?>"/>
+            <input type="text" name="Representantes" class="inputs" maxlength="255" value="<?=@$retorno[0]['representantes'];?>" />
             <p>Professor Conselheiro</p>
             <input type="text" name="Conselheiros" class="inputs" maxlength="60" value="<?=@$retorno[0]['conselheiro'];?>" />
             <br>
