@@ -35,7 +35,7 @@ class usuarioDAO{
 
         $retorno = $sql->fetch();
         if($retorno['professor']==true){
-            $sql = $this->conexao->prepare("SELECT * FROM professor WHERE idusuario = :id");
+            $sql = $this->conexao->prepare("SELECT * FROM professor WHERE Usuario_idusuario = :id");
             $sql->bindValue(":id", $id);
             $sql->execute();
 
