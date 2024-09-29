@@ -31,7 +31,12 @@ header > h2 {
 #conteudo {
   height: 600px;
   gap: 60px;
-  z-index: 2;
+}
+
+.texto-atencao{
+  color: red;
+  font-family: inter;
+  text-align: center;
 }
 
 #texto-lateral-titulo {
