@@ -1,3 +1,10 @@
+<?php
+include_once "../../class/DAO/documento.DAO.class.php";
+
+$objDoc = new Documento_DAO();
+$query = $objDoc->listarDocumentosProfessor($_SESSION['idUsuario']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,49 +27,26 @@
     <table id="tabela-p">
         <thead id="tabela-p-h">
             <tr>
+                <th>Disciplina</th>
                 <th>Turma</th>
                 <th>Trimestre</th>
-                <th>Status</th>
+                <th>Prazo_A</th>
+                <th>Prazo_P</th>
                 <th>Visualizar</th>
             </tr>
         </thead>
         <tbody id="tabela-p-b">
+            <?php
+            foreach($query as $resposta){?>
             <tr>
-                <td>INFO4</td>
-                <td>3</td>
-                <td>Entregue</td>
-                <td><a href="../aluno/formulario.php?idDocumento=X">Visualizar</a></td>
+                <td><?=$resposta['disciplina']?></td>
+               <td><?=$resposta['turma']?></td>
+               <td><?=$resposta['trimestre']?></td>
+               <td><?=$resposta['prazo_A']?></td>
+               <td><?=$resposta['prazo_P']?></td>
+               <td><a href="../aluno/formulario.php?id=<?=$resposta['idDocumento']?>">Visualizar</a></td>
             </tr>
-            <tr>
-                <td>SER3</td>
-                <td>3</td>
-                <td>Não Entregue</td>
-                <td><a href="../aluno/formulario.php?idDocumento=X">Visualizar</a></td>
-            </tr>
-            <tr>
-                <td>ELETRO3</td>
-                <td>3</td>
-                <td>Entregue</td>
-                <td><a href="../aluno/formulario.php?idDocumento=X">Visualizar</a></td>
-            </tr>
-            <tr>
-                <td>ELETRO3</td>
-                <td>3</td>
-                <td>Entregue</td>
-                <td><a href="../aluno/formulario.php?idDocumento=X">Visualizar</a></td>
-            </tr>
-            <tr>
-                <td>ELETRO3</td>
-                <td>3</td>
-                <td>Entregue</td>
-                <td><a href="../aluno/formulario.php?idDocumento=X">Visualizar</a></td>
-            </tr>
-            <tr>
-                <td>ELETRO3</td>
-                <td>3</td>
-                <td>Entregue</td>
-                <td><a href="../aluno/formulario.php?idDocumento=X">Visualizar</a></td>
-            </tr>
+            <?php } ?>
         </tbody>
     </table>
     </main>
