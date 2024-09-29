@@ -1,0 +1,152 @@
+
+* {
+	margin: 0;
+	padding:0;
+}
+body {
+	margin:0;
+	padding:0;
+  height: 100%;
+  width:100%;
+  
+}
+
+.flex-row {
+ padding: 6.25rem 0;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-row-space {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header {
+  height: 90px;
+  background-color: #186d12;
+  width: 100%;
+}
+
+header > h2 {
+  font-family: inter;
+  font-size: 14px;
+  color: rgb(240, 240, 240);
+  padding: 4px;
+  border-radius: 5px;
+}
+
+#conteudo {
+  height: 600px;
+  gap: 60px;
+}
+
+.texto-atencao{
+  color: red;
+  font-family: inter;
+  text-align: center;
+}
+
+#texto-lateral-titulo {
+  font-family: inter;
+  width: 400px;
+  text-align: center;
+  font-size: 50px;
+  color: rgb(0, 129, 39);
+}
+
+#texto-lateral {
+  font-family: inter;
+  width: 400px;
+  text-align: center;
+  font-size: 30px;
+  color: rgb(0, 129, 39);
+}
+
+#form {
+  flex-direction: column;
+  background-color: rgb(225, 225, 225);
+  height: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  gap: 10px;
+  font-family: inter;
+  font-weight: bold;
+}
+
+#botao {
+  border: none;
+  font-weight: bold;
+  font-family: heebo;
+  background-color: #196b11;
+  color: white;
+  padding: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+main > form > div {
+  color: rgb(117, 117, 117);
+  width: 100%;
+}
+
+.inputs {
+  border-radius: 4px;
+  width: 300px;
+  padding: 10px;
+  border: 1px solid grey;
+  text-align: center;
+}
+
+.inputs:focus {
+  outline: none;
+  border: 2px solid green;
+}
+
+#teste{
+  font-family: inter;
+  text-align: center;
+  width: 200px;
+}
+
+#tabela-p-h > tr > th{
+  width: 200px;
+  height: 50px;
+  background-color: #196b11;
+  color: white;
+  font-family: inter;
+  text-align: center;
+}
+
+#tabela-p-b > tr > td{
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  background-color: #bfbfbf;
+  color: rgb(75, 75, 75);
+  font-family: inter;
+}
+
+#tabela-p-b > tr > td > a{
+  text-decoration: none;
+  color: white;
+  background-color: #186d12;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+footer {
+  font-family: inter;
+  text-align: center;
+  color: rgb(238, 238, 238);
+  height: 100px;
+  background-color: #186d12;
+}
+
+footer > p {
+  margin: 0;
+  font-weight: bold;
+}/*# sourceMappingURL=estilo.css.map */
