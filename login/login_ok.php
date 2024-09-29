@@ -15,6 +15,8 @@ $retorno = $objUsuarioDAO->login($objUsuario);
 
 if (is_array($retorno)) {
     $_SESSION['idUsuario'] = $retorno['idusuario'];
+
+
     header("Location: ../formulario/formulario.php");
     exit(); 
 } else {
@@ -31,4 +33,3 @@ if (is_array($retorno)) {
     }
 }
 ?>
-

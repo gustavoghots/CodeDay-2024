@@ -28,12 +28,26 @@ class usuarioDAO{
         }
     }
 
-    public function lista($id) {
+    public function cargo($id) {
         $sql = $this->conexao->prepare("SELECT * FROM usuario WHERE idusuario = :id");
         $sql->bindValue(":id", $id);
         $sql->execute();
-        return $sql->fetch();
+
+        $retorno = $sql->fetch();
+        if($retorno['professor']==true){
+            $sql = $this->conexao->prepare("SELECT * FROM professor WHERE idusuario = :id");
+            $sql->bindValue(":id", $id);
+            $sql->execute();
+
+            $retorno = $sql->fetch();
+            if(is_null($retorno)){
+                return 'p';
+            }else{
+                return $retorno['coordenador'];
+            }
+        }else{
+            return 'a';
+        }
     }
     
 }
-?>
