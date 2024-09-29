@@ -12,7 +12,7 @@
 </head>
 <body>
     <header class="flex-row-space">
-        <img src="../imagens/IFSUL.png" width="300">
+        <img src="../../img/IFSUL.png" width="300">
         <h2>Sistema para Gestão de Conselho</h2>
     </header>
     <main class="flex-row" id="conteudo">

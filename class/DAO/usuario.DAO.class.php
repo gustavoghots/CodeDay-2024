@@ -1,8 +1,8 @@
 <?php
-include_once "usuario.class.php";
+@include_once "../usuario.class.php";
 
 class usuarioDAO{
-    private $conexao = null;
+    private $conexao;
 
     public function __construct(){
         $this->conexao = 
@@ -40,7 +40,8 @@ class usuarioDAO{
             $sql->execute();
 
             $retorno = $sql->fetch();
-            if(is_null($retorno)){
+            print_r($retorno);
+            if(is_null($retorno['coordenador'])){
                 return 'p';
             }else{
                 return $retorno['coordenador'];

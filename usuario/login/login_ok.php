@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once "../class/usuario.DAO.class.php";
-include_once "../class/usuario.class.php";
+include_once "../../class/DAO/usuario.DAO.class.php";
+include_once "../../class/usuario.class.php";
 
 $matricula = $_POST['matricula'];
 $senha = $_POST['senha'];
@@ -16,9 +16,10 @@ $retorno = $objUsuarioDAO->login($objUsuario);
 if (is_array($retorno)) {
     $_SESSION['idUsuario'] = $retorno['idusuario'];
     $cargo = $objUsuarioDAO->cargo($retorno['idusuario']);
+    $_SESSION['cargo'] = $cargo;
     switch ($cargo){
         case 'a':
-            header("Location: ../aluno/formulario.php");
+            header("Location: ../aluno/index.php");
             exit();
         case 'p':
             header(("Location: ../professor/index.php"));
