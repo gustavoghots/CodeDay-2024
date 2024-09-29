@@ -15,8 +15,19 @@ $retorno = $objUsuarioDAO->login($objUsuario);
 
 if (is_array($retorno)) {
     $_SESSION['idUsuario'] = $retorno['idusuario'];
-    header("Location: ../formulario/formulario.php");
-    exit(); 
+    $cargo = $objUsuarioDAO->cargo($retorno['idusuario']);
+    switch ($cargo){
+        case 'a':
+            header("Location: ../aluno/formulario.php");
+            exit();
+        case 'p':
+            header(("Location: ../professor/index.php"));
+            exit();
+        default:
+            header(("Location: ../coordenador/index.php"));
+            exit();
+    }
+ 
 } else {
     switch ($retorno) {
         case 2:
@@ -31,4 +42,3 @@ if (is_array($retorno)) {
     }
 }
 ?>
-
