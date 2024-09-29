@@ -50,5 +50,26 @@ class usuarioDAO{
             return 'a';
         }
     }
+
+    public function listarProfs() {
+        $sql = $this->conexao->prepare("SELECT * FROM usuario INNER JOIN professor ON usuario.idusuario = professor.Usuario_idusuario WHERE usuario.professor = 1");
+        $sql->execute();
+        return $sql->fetchAll();
+    }
+
+    public function retornaCoord() {
+        $sql = $this->conexao->prepare("SELECT * FROM usuario INNER JOIN professor ON usuario.idusuario = professor.Usuario_idusuario WHERE usuario.professor = 1 AND professor.coordenador = 'i' ");
+        $sql->execute();
+        return $sql->fetch();
+    }
+
+    public function renovarCoord($idCoord,$idProf) {
+        $sql = $this->conexao->prepare("UPDATE professor SET coordenador = 'i' WHERE Usuario_idusuario = :idProf");
+        $sql->bindValue(":idProf",$idProf);
+        $sql->execute();
+        $sql = $this->conexao->prepare("UPDATE professor SET coordenador = null WHERE Usuario_idusuario = :idCoord");
+        $sql->bindValue(":idCoord",$idCoord);
+        return $sql->execute();
+    }
     
 }
