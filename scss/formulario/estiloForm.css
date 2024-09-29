@@ -125,31 +125,25 @@ textarea {
     width: 90%;
     margin: 1rem auto;
   }
-
   .inputs {
     width: 100%;
   }
-
   #formulario > button {
     width: 100%;
   }
 }
-
 @media (max-width: 480px) {
   header > h2 {
     font-size: 0.75rem;
   }
-
   h5 {
     font-size: 1rem;
   }
-
   #formulario > p {
     font-size: 0.75rem;
   }
-
   #formulario > button {
     padding: 0.75rem;
     font-size: 1rem;
   }
-}
+}/*# sourceMappingURL=estiloForm.css.map */

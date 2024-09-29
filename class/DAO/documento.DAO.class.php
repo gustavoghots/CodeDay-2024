@@ -46,7 +46,8 @@ class Documento_DAO
                                                     ON d.Grade_curricular_anual_idGrade = dc.Grade_curricular_anual_idGrade
                                                     INNER JOIN disciplina di
                                                         ON dc.Disciplina_idDisciplina = di.idDisciplina
-                                            WHERE dc.Professor_Usuario_idusuario = :idUsuario");
+                                            WHERE dc.Professor_Usuario_idusuario = :idUsuario
+                                            ORDER BY d.trimestre, a.turma, d.Prazo_A asc");
         $sql->bindValue(":idUsuario", $idUsuario);
         $sql->execute();
         return $sql->fetchAll();
