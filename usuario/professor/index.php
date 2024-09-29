@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "../../class/DAO/documento.DAO.class.php";
 
 $objDoc = new Documento_DAO();

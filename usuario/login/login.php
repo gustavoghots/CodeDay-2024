@@ -29,9 +29,15 @@
                 <label>Senha</label>
             </div>
             <input type="password" name="senha" class="inputs">
+            <?php
+                if(isset($_GET['error'])){
+                    echo"<p style='color:white; background-color: red; padding: 5px;'>Erro no Login</p>";
+                }
+            ?>
             <div>
                 <button id="botao">Entrar</button>
             </div>
+            
         </form>
     </main>
         <footer class="flex-row-space">
