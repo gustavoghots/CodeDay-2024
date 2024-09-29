@@ -37,51 +37,65 @@ class Documento_DAO
         $sql->execute();
         return $sql->fetchAll();
     }
+    public function listarDocumentosProfessor($idUsuario)
+    {
+        $sql = $this->conexao->prepare("SELECT di.nome as disciplina, a.turma, d.trimestre, d.prazo_A, d.prazo_P, d.idDocumento
+                                            FROM aluno a INNER JOIN documento d
+                                                ON a.Usuario_idusuario = d.Aluno_Usuario_idusuario
+                                                INNER JOIN disciplina_has_curso dc
+                                                    ON d.Grade_curricular_anual_idGrade = dc.Grade_curricular_anual_idGrade
+                                                    INNER JOIN disciplina di
+                                                        ON dc.Disciplina_idDisciplina = di.idDisciplina
+                                            WHERE dc.Professor_Usuario_idusuario = :idUsuario");
+        $sql->bindValue(":idUsuario", $idUsuario);
+        $sql->execute();
+        return $sql->fetchAll();
+    }
 
     public function AtualizarForm(Documento $objDocumento)
-{
-    // Iniciar a transação
-    $this->conexao->beginTransaction();
+    {
+        // Iniciar a transação
+        $this->conexao->beginTransaction();
 
-    try {
-        // Atualizar o documento
-        $sql = $this->conexao->prepare("UPDATE documento
+        try {
+            // Atualizar o documento
+            $sql = $this->conexao->prepare("UPDATE documento
                                             SET representantes = :representantes,
                                                 conselheiro = :conselheiro,
                                                 participantes = :participantes
                                             WHERE idDocumento = :idDocumento;");
 
-        $sql->bindValue(":representantes", $objDocumento->getRepresentantes());
-        $sql->bindValue(":conselheiro", $objDocumento->getConselheiro());
-        $sql->bindValue(":participantes", $objDocumento->getParticipantes());
-        $sql->bindValue(":idDocumento", $objDocumento->getId());
-        $sql->execute();
+            $sql->bindValue(":representantes", $objDocumento->getRepresentantes());
+            $sql->bindValue(":conselheiro", $objDocumento->getConselheiro());
+            $sql->bindValue(":participantes", $objDocumento->getParticipantes());
+            $sql->bindValue(":idDocumento", $objDocumento->getId());
+            $sql->execute();
 
-        // Exibe mensagem de atualização do documento
-        echo "<br>Documento atualizado: ID " . $objDocumento->getId() . "<br>";
+            // Exibe mensagem de atualização do documento
+            echo "<br>Documento atualizado: ID " . $objDocumento->getId() . "<br>";
 
-        // Atualizar as respostas
-        $respostas = $objDocumento->getRespostas();
+            // Atualizar as respostas
+            $respostas = $objDocumento->getRespostas();
 
-        if (!empty($respostas)) {
-            $caseValor = '';
-            $caseTexto = '';
-            $questoes = [];
+            if (!empty($respostas)) {
+                $caseValor = '';
+                $caseTexto = '';
+                $questoes = [];
 
-            foreach ($respostas as $resposta) {
-                if (isset($resposta['questao'], $resposta['valor'], $resposta['texto'])) {
-                    $questao = (int)$resposta['questao'];
-                    $valor = $resposta['valor'];
-                    $texto = $resposta['texto'];
+                foreach ($respostas as $resposta) {
+                    if (isset($resposta['questao'], $resposta['valor'], $resposta['texto'])) {
+                        $questao = (int)$resposta['questao'];
+                        $valor = $resposta['valor'];
+                        $texto = $resposta['texto'];
 
-                    $caseValor .= "WHEN questao = $questao THEN '$valor' ";
-                    $caseTexto .= "WHEN questao = $questao THEN '$texto' ";
-                    $questoes[] = $questao;
+                        $caseValor .= "WHEN questao = $questao THEN '$valor' ";
+                        $caseTexto .= "WHEN questao = $questao THEN '$texto' ";
+                        $questoes[] = $questao;
+                    }
                 }
-            }
 
-            // Montar a query para atualizar respostas
-            $sql = $this->conexao->prepare("UPDATE resposta
+                // Montar a query para atualizar respostas
+                $sql = $this->conexao->prepare("UPDATE resposta
                                                 SET valor = CASE 
                                                     " . $caseValor . "
                                                     END,
@@ -91,22 +105,21 @@ class Documento_DAO
                                                 WHERE questao IN (" . implode(',', array_unique($questoes)) . ") 
                                                 AND Documento_idDocumento = :idDocumento;");
 
-            $sql->bindValue(":idDocumento", $objDocumento->getId());
-            $sql->execute();
+                $sql->bindValue(":idDocumento", $objDocumento->getId());
+                $sql->execute();
 
-            // Exibe mensagem de atualização das respostas
-            echo "Respostas atualizadas para o documento ID " . $objDocumento->getId() . "<br>";
+                // Exibe mensagem de atualização das respostas
+                echo "Respostas atualizadas para o documento ID " . $objDocumento->getId() . "<br>";
+            }
+
+            // Confirmar a transação
+            $this->conexao->commit();
+            echo "Transação confirmada para o documento ID " . $objDocumento->getId() . "<br>";
+        } catch (Exception $e) {
+            // Reverter em caso de erro
+            $this->conexao->rollBack();
+            echo "Erro na atualização do documento ID " . $objDocumento->getId() . ": " . $e->getMessage() . "<br>";
+            throw $e; // Lançar a exceção para tratamento
         }
-
-        // Confirmar a transação
-        $this->conexao->commit();
-        echo "Transação confirmada para o documento ID " . $objDocumento->getId() . "<br>";
-    } catch (Exception $e) {
-        // Reverter em caso de erro
-        $this->conexao->rollBack();
-        echo "Erro na atualização do documento ID " . $objDocumento->getId() . ": " . $e->getMessage() . "<br>";
-        throw $e; // Lançar a exceção para tratamento
     }
-}
-
 }
