@@ -206,7 +206,6 @@
         </form>
     </main>
     <footer class="flex-row-space">
-        <img src="../../img/logofooter.svg" width="80">
         <p>Site experimental criado para o CodeDay 2024</p>
     </footer>
 </body>

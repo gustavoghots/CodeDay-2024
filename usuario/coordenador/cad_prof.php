@@ -25,15 +25,15 @@ $query = $objDoc->listarDocumentosProfessor($_SESSION['idUsuario']);
     <img src="../../imagens/IFSUL.svg" width="350">
         <h2>Cadastro de Usuario</h2>
     </header>
-    <main class="flex-row" id="conteudo" style="flex-direction: column; gap: 10px;">
+    <main class="flex-row-space" id="conteudo" style="flex-direction: column; gap: 10px;">
     <h1 id="texto-lateral">Tabela dos conselhos</h1>
     <form action="cad_prof_ok.php" method="POST" class='form'>
-        <label>Login:</label>
-        <input type='text' name='login'><br>
-        <label>Nome:</label>
-        <input type="text" name="nome"><br>
-        <label>Senha:</label>
-        <input type="password" name="senha" ><br>
+        <label>Login</label>
+        <input type='text' name='login'  class="inputs"><br>
+        <label>Nome</label>
+        <input type="text" name="nome" class="inputs"><br>
+        <label>Senha</label>
+        <input type="password" name="senha"  class="inputs"><br>
         
 
         <button type="submit" id='botao'>Cadastrar Professor</button>

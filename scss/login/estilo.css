@@ -55,6 +55,22 @@ header > h2 {
     color: rgb(0, 129, 39);
 }
 
+#texto-lateral-titulo-alt{
+    font-family: inter;
+    width: 25rem;
+    text-align: center;
+    font-size: 3.125rem;
+    color: rgb(255, 255, 255);
+}
+
+#texto-lateral-alt{
+    font-family: inter;
+    width: 25rem;
+    text-align: center;
+    font-size: 1.875rem;
+    color: rgb(255, 255, 255);
+}
+
 #texto-lateral {
     font-family: inter;
     width: 25rem;
@@ -89,8 +105,13 @@ header > h2 {
 	transform: scale(1.05);
 }
 main > form > div {
-    color: rgb(117, 117, 117);
+    color: rgb(148, 148, 148);
     width: 100%;
+}
+
+.div-label{
+    width: 100%;
+    color: #757575;
 }
 
 .inputs {
@@ -176,23 +197,47 @@ footer > p {
   border-radius: 0.3125rem;
   font-family: inter;
 }
+#div-left{
+    background-color:#083e04;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#div-right{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+}
 
 .form {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #186d12;
+    gap: 10px;
+    background-color: #d7d7d7;
     width: 300px;
-    height: 350px;
+    height: 450px;
     border-radius: 15px;;
-    box-shadow: 2px 2px 10px black;
-    color: white;
+    color: rgb(128, 128, 128);
     font-size: 20px;
+    font-family: inter;
 }
 
-.form button {
-    box-shadow: 2px 2px 10px black;
+.form > .inputs{
+    width: 260px;
+}
+
+
+.form > button {
     border-radius: 7px;
 }
 .form input {

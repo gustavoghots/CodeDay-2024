@@ -15,18 +15,19 @@
         <img src="../../imagens/IFSUL.svg" width="350">
         <h2>Sistema para Gestão de Conselho</h2>
     </header>
-    <main class="flex-row" id="conteudo">
-        <div>
-            <h1 id="texto-lateral-titulo">Seja Bem Vindo</h1>
-            <h2 id="texto-lateral">Acesse o sistema de Conselho através do formulário ao lado</h2>
+    <main class="flex-row-space" id="conteudo">
+        <div id="div-left">
+            <h1 id="texto-lateral-titulo-alt">Seja Bem Vindo</h1>
+            <h2 id="texto-lateral-alt">Acesse o sistema de Conselho através do formulário ao lado</h2>
         </div>
+        <div id="div-right">
         <form id="form" action="login_ok.php" method="POST" class="flex-row">         
-            <div class="div">
-                <label>Matricula</label>
+            <div class="div-label">
+                <label class="label">Matricula</label>
             </div>
             <input type="text"  name="matricula" class="inputs">
-            <div>
-                <label>Senha</label>
+            <div  class="div-label">
+                <label  class="label">Senha</label>
             </div>
             <input type="password" name="senha" class="inputs">
             <?php
@@ -39,6 +40,7 @@
             </div>
             
         </form>
+        </div>
     </main>
         <footer class="flex-row-space">
         <p>Site experimental criado para o CodeDay 2024</p>
