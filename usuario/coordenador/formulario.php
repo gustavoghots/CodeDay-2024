@@ -23,6 +23,7 @@
     session_start();
     $objDocumentoDAO = new Documento_DAO();
     $retorno = $objDocumentoDAO->Dados($_GET['id']);
+    $parecer = $objDocumentoDAO->listarPareceres($_GET['id']);
     ?>
     <main class="flex-row" id="main-form">
         <form id="formulario" class="flex-row" action="formulario_ok.php" method="POST">
@@ -197,8 +198,11 @@
             <textarea name="motivo8" class="inputs" maxlength="255"><?=@$retorno[7]['texto'];?></textarea>
             <p>Nome dos Participantes: </p>
             <textarea name="Participantes" class="inputs" maxlength="255"><?=@$retorno[0]['participantes'];?></textarea>
-            <button>Enviar Formulário</button>
             <input type="hidden" name="idDocumento" value="<?=$_GET['id']?>">
+            <h5>Pareceres do Professor</h5>
+            <input type="text" value="<?=$parecer['parecer']?>" class="inputs">
+            <br>
+            <br>
         </form>
     </main>
     <footer class="flex-row-space">
