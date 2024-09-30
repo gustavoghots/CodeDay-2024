@@ -1,6 +1,6 @@
 <?php
-    include_once '../../class/DAO/documento.DAO.class.php';
     session_start();
+    include_once '../../class/DAO/documento.DAO.class.php';
     $objDocumentoDAO = new Documento_DAO();
     $idDocumento = $objDocumentoDAO->documentoValidoAluno($_SESSION['idUsuario']);
     if($idDocumento){
