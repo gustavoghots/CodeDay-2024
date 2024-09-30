@@ -1,9 +1,10 @@
 <?php
-
+ob_start();
+session_start();
 include_once '../../class/DAO/documento.DAO.class.php';
 include_once '../../class/documento.class.php';
 
-session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idDocumento = $_POST['idDocumento'];
@@ -70,4 +71,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     header('location: index.php?erro');
 }
-?>

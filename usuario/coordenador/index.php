@@ -53,8 +53,7 @@ $query = $objDoc->listarDocumentosProfessor($_SESSION['idUsuario']);
     <div id="funcoesCoord">
         <a href="cad_aluno.php">Cadastrar Aluno</a>
         <a href="cad_prof.php">Cadastrar Professor</a>
-        <a href="listarProf.php">Listar Professores</a>
-        <td><a href="formulario.php?id=<?=$resposta['idDocumento']?>">Visualizar</a> | <a href="atualizar.php?id=<?=$resposta['idDocumento']?>">Editar Questão</a></td>
+        <a href="listarProf.php">Listar Professores</a> | <a href="atualizar.php?id=<?=$resposta['idDocumento']?>">Editar Questão</a></td>
 
     </div>
     <div class='mensagemcd'>

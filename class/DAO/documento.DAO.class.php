@@ -4,14 +4,10 @@ class Documento_DAO
 {
     private $conexao;
 
-    public function __construct()
-    {
-        $this->conexao =
-            new PDO(
-                "mysql:host=localhost; dbname=conselho",
-                "root",
-                ""
-            );
+    public function __construct(){
+        $this->conexao = 
+        new PDO("mysql:host=localhost; dbname=conselho", 
+        "root", "");
     }
 
     public function documentoValidoAluno($idUsuario)

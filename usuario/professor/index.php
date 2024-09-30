@@ -46,7 +46,7 @@ $query = $objDoc->listarDocumentosProfessor($_SESSION['idUsuario']);
                <td><?=$resposta['trimestre']?></td>
                <td><?=$resposta['prazo_A']?></td>
                <td><?=$resposta['prazo_P']?></td>
-               <td><a href="../coordenador/formulario.php?id=<?=$resposta['idDocumento']?>">Visualizar</a></td>
+               <td><a href="formulario.php?id=<?=$resposta['idDocumento']?>">Visualizar</a></td>
             </tr>
             <?php } ?>
         </tbody>
