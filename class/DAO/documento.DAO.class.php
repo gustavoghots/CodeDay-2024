@@ -39,7 +39,7 @@ class Documento_DAO
     }
     public function listarDocumentosProfessor($idUsuario)
     {
-        $sql = $this->conexao->prepare("SELECT di.nome as disciplina, a.turma, d.trimestre, d.prazo_A, d.prazo_P, d.idDocumento
+        $sql = $this->conexao->prepare("SELECT di.nome as disciplina, a.turma, d.Aluno_Usuario_idusuario, d.trimestre, d.prazo_A, d.prazo_P, d.idDocumento
                                             FROM aluno a INNER JOIN documento d
                                                 ON a.Usuario_idusuario = d.Aluno_Usuario_idusuario
                                                 INNER JOIN disciplina_has_curso dc
