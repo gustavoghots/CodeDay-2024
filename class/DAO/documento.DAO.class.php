@@ -8,7 +8,7 @@ class Documento_DAO
     {
         $this->conexao =
             new PDO(
-                "mysql:host=localhost; dbname=conselho",
+                "mysql:host=127.0.0.1; dbname=conselho",
                 "root",
                 ""
             );

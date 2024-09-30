@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 include_once "../../class/DAO/documento.DAO.class.php";
 
