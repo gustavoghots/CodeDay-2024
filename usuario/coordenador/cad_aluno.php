@@ -6,8 +6,6 @@ $objDoc = new Documento_DAO();
 $query = $objDoc->listarDocumentosProfessor($_SESSION['idUsuario']);
 ?>
 
-
-
 <html>
     <head>
     <meta charset="UTF-8">
@@ -25,9 +23,9 @@ $query = $objDoc->listarDocumentosProfessor($_SESSION['idUsuario']);
     <img src="../../imagens/IFSUL.svg" width="350">
         <h2>Cadastro de Usuario</h2>
     </header>
-    <main class="flex-row-space" id="conteudo" style="flex-direction: column; gap: 10px;">
+    <main class="flex-row-space" id="conteudo" style="flex-direction: column; gap: 10px; height: 800px">
     <h1 id="texto-lateral">Cadastro de alunos</h1>
-    <form action="cad_aluno_ok.php" method="POST" class='form'>
+    <form action="cad_aluno_ok.php" method="POST" class='form' style="height: 480px;">
         <label>Login</label>
         <input type='text' name='login' class="inputs"><br>
         <label>Nome</label>
