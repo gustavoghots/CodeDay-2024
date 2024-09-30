@@ -1,3 +1,10 @@
+<?php
+    include_once '../../class/DAO/documento.DAO.class.php';
+    session_start();
+    $objDocumentoDAO = new Documento_DAO();
+    $retorno = $objDocumentoDAO->Dados($_GET['id']);
+    $parecer = $objDocumentoDAO->listarPareceres($_GET['id']);
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,13 +25,6 @@
         <img src="../../imagens/IFSUL.svg" width="350">
         <h2>Sistema para Gestão de Conselho</h2>
     </header>
-    <?php
-    include_once '../../class/DAO/documento.DAO.class.php';
-    session_start();
-    $objDocumentoDAO = new Documento_DAO();
-    $retorno = $objDocumentoDAO->Dados($_GET['id']);
-    $parecer = $objDocumentoDAO->listarPareceres($_GET['id']);
-    ?>
     <main class="flex-row" id="main-form">
         <form id="formulario" class="flex-row" action="formulario_ok.php" method="POST">
             <p>Representantes </p>
