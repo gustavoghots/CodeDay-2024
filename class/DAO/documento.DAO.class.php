@@ -39,7 +39,7 @@ class Documento_DAO
     }
     public function listarDocumentosProfessor($idUsuario)
     {
-        $sql = $this->conexao->prepare("SELECT di.nome as disciplina, a.turma, d.trimestre, d.prazo_A, d.prazo_P, d.idDocumento
+        $sql = $this->conexao->prepare("SELECT di.nome as disciplina, a.turma, d.Aluno_Usuario_idusuario, d.trimestre, d.prazo_A, d.prazo_P, d.idDocumento
                                             FROM aluno a INNER JOIN documento d
                                                 ON a.Usuario_idusuario = d.Aluno_Usuario_idusuario
                                                 INNER JOIN disciplina_has_curso dc
@@ -51,6 +51,13 @@ class Documento_DAO
         $sql->bindValue(":idUsuario", $idUsuario);
         $sql->execute();
         return $sql->fetchAll();
+    }
+
+    public function listarPareceres($id){
+        $sql = $this->conexao->prepare("SELECT * FROM documento d INNER JOIN Grade_curricular_anual gc ON d.Grade_curricular_anual_idGrade = gc.idGrade INNER JOIN disciplina_has_curso dhc ON gc.idGrade = dhc.Grade_curricular_anual_idGrade WHERE d.idDocumento = :id");
+        $sql->bindValue(":id",$id);
+        $sql->execute();
+        return $sql->fetch();
     }
 
     public function AtualizarForm(Documento $objDocumento)
